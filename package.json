@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^10.0.0",
     "eslint-plugin-jest": "^24.3.6",
     "firebase-admin": "^9.9.0",
