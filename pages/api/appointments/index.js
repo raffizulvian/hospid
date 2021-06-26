@@ -12,6 +12,7 @@ export default async function handler(req, res) {
         doctor_name: doctorName,
         total_registered: 0,
         created_at: FieldValue.serverTimestamp(),
+        updated_at: FieldValue.serverTimestamp(),
       };
 
       try {
