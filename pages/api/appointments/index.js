@@ -10,6 +10,7 @@ export default async function handler(req, res) {
         capacity: capacity,
         description: description,
         doctor_name: doctorName,
+        total_registered: 0,
         created_at: FieldValue.serverTimestamp(),
       };
 
