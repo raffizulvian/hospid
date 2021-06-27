@@ -1,48 +1,26 @@
-const db = require('../../../lib/server/db');
-const FieldValue = require('../../../lib/server/db/value');
+import AppointmentModel from '../../../lib/server/models/appointmentModel';
 
 export default async function handler(req, res) {
   switch (req.method) {
     case 'POST': {
       const { doctorName, description, capacity } = req.body;
 
-      const data = {
-        capacity: capacity,
-        description: description,
-        doctor_name: doctorName,
-        total_registered: 0,
-        created_at: FieldValue.serverTimestamp(),
-        updated_at: FieldValue.serverTimestamp(),
-      };
-
       try {
-        const id = db.collection('appointments').doc().id;
-        db.collection('appointments').doc(id).set(data);
-
-        res.status(200).json({ id: id });
+        const id = await AppointmentModel.create(doctorName, description, capacity);
+        res.status(200).json(id);
       } catch (err) {
-        res.status(500).end();
+        console.log(err);
+        res.status(err.code).json({ message: err.message });
       }
       break;
     }
 
     case 'GET': {
       try {
-        const appointments = await db.collection('appointments').get();
-
-        if (appointments.empty) {
-          res.status(404).end();
-          return;
-        }
-
-        let data = [];
-        appointments.forEach((doc) => {
-          data.push({ id: doc.id, ...doc.data() });
-        });
-
+        const data = AppointmentModel.get();
         res.status(200).json(data);
       } catch (err) {
-        res.status(500).end();
+        res.status(err.code).json({ message: err.message });
       }
       break;
     }
