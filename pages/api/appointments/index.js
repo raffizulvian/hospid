@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
       try {
         const id = await AppointmentModel.create(doctorName, description, capacity);
-        res.status(200).json(id);
+        res.status(200).json({ id });
       } catch (err) {
         console.log(err);
         res.status(err.code).json({ message: err.message });
