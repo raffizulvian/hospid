@@ -16,6 +16,18 @@ export default async function handler(req, res) {
       break;
     }
 
+    case 'DELETE': {
+      const { appointmentId } = req.query;
+
+      try {
+        const id = await AppointmentModel.delete(appointmentId);
+        res.status(200).json({ id });
+      } catch (err) {
+        res.status(err.code).json({ message: err.message });
+      }
+      break;
+    }
+
     default:
       res.status(405).end();
       break;
