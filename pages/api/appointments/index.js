@@ -17,7 +17,7 @@ export default async function handler(req, res) {
 
     case 'GET': {
       try {
-        const data = AppointmentModel.get();
+        const data = await AppointmentModel.get();
         res.status(200).json(data);
       } catch (err) {
         res.status(err.code).json({ message: err.message });
