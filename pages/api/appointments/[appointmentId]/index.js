@@ -28,6 +28,18 @@ export default async function handler(req, res) {
       break;
     }
 
+    case 'POST': {
+      const { uid, username, aid } = req.body;
+
+      try {
+        const id = await AppointmentModel.apply(uid, username, aid);
+        res.status(201).json({ id });
+      } catch (err) {
+        res.status(err.code).json({ message: err.message });
+      }
+      break;
+    }
+
     default:
       res.status(405).end();
       break;
