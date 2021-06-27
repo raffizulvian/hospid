@@ -13,5 +13,8 @@ export default async function handler(req, res) {
       }
       break;
     }
+
+    default:
+      res.status(405).end();
   }
 }
