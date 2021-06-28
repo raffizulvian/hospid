@@ -1,4 +1,4 @@
-import AppointmentModel from '../../../lib/server/models/appointmentModel';
+import Appointment from '../../../lib/server/models/appointmentModel';
 
 export default async function handler(req, res) {
   switch (req.method) {
@@ -6,7 +6,7 @@ export default async function handler(req, res) {
       const { doctorName, description, capacity } = req.body;
 
       try {
-        const id = await AppointmentModel.create(doctorName, description, capacity);
+        const id = await Appointment.create(doctorName, description, capacity);
         res.status(200).json({ id });
       } catch (err) {
         console.log(err);
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
 
     case 'GET': {
       try {
-        const data = await AppointmentModel.get();
+        const data = await Appointment.get();
         res.status(200).json(data);
       } catch (err) {
         res.status(err.code).json({ message: err.message });

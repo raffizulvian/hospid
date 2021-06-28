@@ -1,4 +1,4 @@
-import AppointmentModel from '../../../../lib/server/models/appointmentModel';
+import Appointment from '../../../../lib/server/models/appointmentModel';
 
 export default async function handler(req, res) {
   switch (req.method) {
@@ -7,7 +7,7 @@ export default async function handler(req, res) {
       const { doctorName, description, capacity } = req.body;
 
       try {
-        const id = await AppointmentModel.update(appointmentId, doctorName, description, capacity);
+        const id = await Appointment.update(appointmentId, doctorName, description, capacity);
         res.status(201).json({ id });
       } catch (err) {
         console.log(err);
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
       const { appointmentId } = req.query;
 
       try {
-        const id = await AppointmentModel.delete(appointmentId);
+        const id = await Appointment.delete(appointmentId);
         res.status(200).json({ id });
       } catch (err) {
         res.status(err.code).json({ message: err.message });
@@ -32,7 +32,7 @@ export default async function handler(req, res) {
       const { uid, username, aid } = req.body;
 
       try {
-        const id = await AppointmentModel.apply(uid, username, aid);
+        const id = await Appointment.apply(uid, username, aid);
         res.status(201).json({ id });
       } catch (err) {
         res.status(err.code).json({ message: err.message });
