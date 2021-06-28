@@ -7,9 +7,9 @@ export default async function handler(req, res) {
       const { username, password } = req.body;
 
       try {
-        const loginTime = await User.login(username, password, type);
+        const data = await User.login(username, password, type);
 
-        res.status(200).json({ login_time: loginTime });
+        res.status(200).json(data);
       } catch (err) {
         res.status(err.code).json({ message: err.message });
       }
