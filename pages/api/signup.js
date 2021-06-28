@@ -6,9 +6,9 @@ export default async function handler(req, res) {
       const { firstName, lastName, age, email, username, password } = req.body;
 
       try {
-        const uid = await User.signup(firstName, lastName, age, email, username, password);
+        const data = await User.signup(firstName, lastName, age, email, username, password);
 
-        res.status(200).json({ uid });
+        res.status(200).json(data);
       } catch (err) {
         res.status(err.code).json({ message: err.message });
       }
