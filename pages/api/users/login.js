@@ -1,5 +1,5 @@
 import { serialize } from 'cookie';
-import User from '../../lib/server/models/userModel';
+import User from '../../../lib/server/models/userModel';
 
 const fifteenMinutes = 15 * 60;
 const oneMonth = 4 * 7 * 24 * 60 * 60;

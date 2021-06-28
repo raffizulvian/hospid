@@ -1,4 +1,4 @@
-import User from '../../lib/server/models/userModel';
+import User from '../../../lib/server/models/userModel';
 
 export default async function handler(req, res) {
   switch (req.method) {
