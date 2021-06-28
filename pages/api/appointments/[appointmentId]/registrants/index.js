@@ -9,7 +9,7 @@ export default async function handler(req, res) {
         const data = await Appointment.getRegistrants(appointmentId);
         res.status(200).json(data);
       } catch (err) {
-        res.status(err.code).json({ message: err.message });
+        res.status(err.code || 500).json({ message: err.message });
       }
       break;
     }

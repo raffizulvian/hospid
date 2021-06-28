@@ -9,7 +9,7 @@ export default async function handler(req, res) {
         const id = await Appointment.cancel(registrantId, appointmentId);
         res.status(200).json({ id });
       } catch (err) {
-        res.status(err.code).json({ message: err.message });
+        res.status(err.code || 500).json({ message: err.message });
       }
       break;
     }

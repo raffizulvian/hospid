@@ -10,7 +10,7 @@ export default async function handler(req, res) {
         res.status(200).json({ id });
       } catch (err) {
         console.log(err);
-        res.status(err.code).json({ message: err.message });
+        res.status(err.code || 500).json({ message: err.message });
       }
       break;
     }
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         const data = await Appointment.get();
         res.status(200).json(data);
       } catch (err) {
-        res.status(err.code).json({ message: err.message });
+        res.status(err.code || 500).json({ message: err.message });
       }
       break;
     }
