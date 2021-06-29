@@ -1,7 +1,8 @@
 import withAuth from '../../../lib/server/middleware/withAuth';
+import withCookie from '../../../lib/server/middleware/withCookie';
 import withRoles from '../../../lib/server/middleware/withRoles';
+import withToken from '../../../lib/server/middleware/withToken';
 import User from '../../../lib/server/models/userModel';
-import { clearToken } from '../../../lib/server/utils/cookies';
 
 async function handler(req, res) {
   switch (req.method) {
@@ -11,9 +12,7 @@ async function handler(req, res) {
       try {
         const id = await User.logout(uid);
 
-        const cookies = clearToken();
-        res.setHeader('Set-Cookie', cookies);
-
+        res.clearToken();
         res.status(200).json({ id });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
@@ -28,4 +27,4 @@ async function handler(req, res) {
 
 const permittedRoles = { POST: ['admin', 'patient'] };
 
-export default withAuth(withRoles(handler, permittedRoles));
+export default withAuth(withRoles(withCookie(withToken(handler)), permittedRoles));
