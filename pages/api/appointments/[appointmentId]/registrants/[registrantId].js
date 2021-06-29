@@ -1,8 +1,10 @@
+import withAuth from '../../../../../lib/server/middleware/withAuth';
+import withRoles from '../../../../../lib/server/middleware/withRoles';
 import Appointment from '../../../../../lib/server/models/appointmentModel';
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   switch (req.method) {
-    case 'DELETE': {
+    case 'POST': {
       const { appointmentId, registrantId } = req.query;
 
       try {
@@ -18,3 +20,7 @@ export default async function handler(req, res) {
       res.status(405).end();
   }
 }
+
+const permittedRoles = { POST: ['patient'] };
+
+export default withAuth(withRoles(handler, permittedRoles));

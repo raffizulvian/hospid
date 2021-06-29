@@ -1,6 +1,8 @@
+import withAuth from '../../../lib/server/middleware/withAuth';
+import withRoles from '../../../lib/server/middleware/withRoles';
 import User from '../../../lib/server/models/userModel';
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   switch (req.method) {
     case 'GET': {
       const { userId } = req.query;
@@ -19,3 +21,7 @@ export default async function handler(req, res) {
       break;
   }
 }
+
+const permittedRoles = { GET: ['patient'] };
+
+export default withAuth(withRoles(handler, permittedRoles));

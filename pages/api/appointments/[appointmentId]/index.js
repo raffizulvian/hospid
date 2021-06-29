@@ -1,6 +1,8 @@
+import withAuth from '../../../../lib/server/middleware/withAuth';
+import withRoles from '../../../../lib/server/middleware/withRoles';
 import Appointment from '../../../../lib/server/models/appointmentModel';
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   switch (req.method) {
     case 'PUT': {
       const { appointmentId } = req.query;
@@ -44,3 +46,7 @@ export default async function handler(req, res) {
       break;
   }
 }
+
+const permittedRoles = { POST: ['patient'], DELETE: ['admin'], PUT: ['admin'] };
+
+export default withAuth(withRoles(handler, permittedRoles));
