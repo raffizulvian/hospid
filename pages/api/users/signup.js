@@ -7,7 +7,6 @@ export default async function handler(req, res) {
 
       try {
         const user = await User.signup(data);
-
         res.status(200).json(user);
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
