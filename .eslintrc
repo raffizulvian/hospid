@@ -6,5 +6,12 @@
     "jest/globals": true
   },
   "plugins": ["jest"],
-  "extends": ["eslint:recommended", "plugin:jest/recommended", "plugin:jest/style", "next", "next/core-web-vitals"]
+  "extends": [
+    "eslint:recommended",
+    "plugin:jest/recommended",
+    "plugin:jest/style",
+    "airbnb-base",
+    "next",
+    "next/core-web-vitals"
+  ]
 }

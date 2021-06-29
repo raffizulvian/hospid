@@ -1740,6 +1740,11 @@ configstore@^5.0.0:
     write-file-atomic "^3.0.0"
     xdg-basedir "^4.0.0"
 
+confusing-browser-globals@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/confusing-browser-globals/-/confusing-browser-globals-1.0.10.tgz#30d1e7f3d1b882b25ec4933d1d1adac353d20a59"
+  integrity sha512-gNld/3lySHwuhaVluJUKLePYirM3QNCKzVxqAdhJII9/WXKVX5PURzMVJspS1jTslSqjeuG4KMVTSouit5YPHA==
+
 console-browserify@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/console-browserify/-/console-browserify-1.2.0.tgz#67063cef57ceb6cf4993a2ab3a55840ae8c49336"
@@ -2199,6 +2204,15 @@ escodegen@^2.0.0:
   optionalDependencies:
     source-map "~0.6.1"
 
+eslint-config-airbnb-base@^14.2.1:
+  version "14.2.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-airbnb-base/-/eslint-config-airbnb-base-14.2.1.tgz#8a2eb38455dc5a312550193b319cdaeef042cd1e"
+  integrity sha512-GOrQyDtVEc1Xy20U7vsB2yAoB4nBlfH5HZJeatRXHleO+OS5Ot+MWij4Dpltw4/DyIkqUfqz1epfhVR5XWWQPA==
+  dependencies:
+    confusing-browser-globals "^1.0.10"
+    object.assign "^4.1.2"
+    object.entries "^1.1.2"
+
 eslint-config-next@11.0.1:
   version "11.0.1"
   resolved "https://registry.yarnpkg.com/eslint-config-next/-/eslint-config-next-11.0.1.tgz#abdd2565a6fa5841556a89ba935f044bec173d0b"
@@ -2241,7 +2255,7 @@ eslint-module-utils@^2.6.1:
     debug "^3.2.7"
     pkg-dir "^2.0.0"
 
-eslint-plugin-import@^2.22.1:
+eslint-plugin-import@^2.22.1, eslint-plugin-import@^2.23.4:
   version "2.23.4"
   resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.23.4.tgz#8dceb1ed6b73e46e50ec9a5bb2411b645e7d3d97"
   integrity sha512-6/wP8zZRsnQFiR3iaPFgh5ImVRM1WN5NUWfTIRqwOdeiGJlBcSk82o1FEVq8yXmy4lkIzTo7YhHCIxlU/2HyEQ==
@@ -4307,7 +4321,7 @@ object.assign@^4.1.2:
     has-symbols "^1.0.1"
     object-keys "^1.1.1"
 
-object.entries@^1.1.4:
+object.entries@^1.1.2, object.entries@^1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/object.entries/-/object.entries-1.1.4.tgz#43ccf9a50bc5fd5b649d45ab1a579f24e088cafd"
   integrity sha512-h4LWKWE+wKQGhtMjZEBud7uLGhqyLwj8fpHOarZhD2uY3C9cRtk57VQ89ke3moByLXMedqs3XCHzyb4AmA2DjA==
