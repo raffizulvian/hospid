@@ -10,7 +10,6 @@ export default async function handler(req, res) {
         const id = await Appointment.update(appointmentId, doctorName, description, capacity);
         res.status(201).json({ id });
       } catch (err) {
-        console.log(err);
         res.status(err.code || 500).json({ message: err.message });
       }
       break;
