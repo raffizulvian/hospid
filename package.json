@@ -2,13 +2,12 @@
   "name": "compfest-seleksi",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose --coverage"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
