@@ -1,6 +1,4 @@
-import withAuth from '../../../lib/server/middleware/withAuth';
 import withCookie from '../../../lib/server/middleware/withCookie';
-import withRoles from '../../../lib/server/middleware/withRoles';
 import withToken from '../../../lib/server/middleware/withToken';
 import User from '../../../lib/server/models/userModel';
 
@@ -8,9 +6,15 @@ async function handler(req, res) {
   switch (req.method) {
     case 'POST': {
       const { uid } = req.body;
+      const refreshToken = req.cookies.RFSTKN;
+
+      if (typeof refreshToken === 'undefined') {
+        res.status(401).end();
+        break;
+      }
 
       try {
-        const id = await User.logout(uid);
+        const id = await User.logout(uid, refreshToken);
 
         res.clearToken();
         res.status(200).json({ id });
@@ -25,6 +29,4 @@ async function handler(req, res) {
   }
 }
 
-const permittedRoles = { POST: ['admin', 'patient'] };
-
-export default withAuth(withRoles(withCookie(withToken(handler)), permittedRoles));
+export default withCookie(withToken(handler));
