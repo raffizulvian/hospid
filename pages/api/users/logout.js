@@ -1,7 +1,10 @@
+/* Middleware */
 import withAuth from '../../../lib/server/middleware/withAuth';
 import withCookie from '../../../lib/server/middleware/withCookie';
 import withRoles from '../../../lib/server/middleware/withRoles';
 import withToken from '../../../lib/server/middleware/withToken';
+
+/* Model */
 import User from '../../../lib/server/models/userModel';
 
 async function handler(req, res) {

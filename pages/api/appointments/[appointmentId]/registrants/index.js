@@ -1,5 +1,8 @@
+/* Middleware */
 import withAuth from '../../../../../lib/server/middleware/withAuth';
 import withRoles from '../../../../../lib/server/middleware/withRoles';
+
+/* Model */
 import Appointment from '../../../../../lib/server/models/appointmentModel';
 
 async function handler(req, res) {

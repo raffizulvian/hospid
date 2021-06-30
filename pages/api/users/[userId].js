@@ -1,5 +1,8 @@
+/* Middleware */
 import withAuth from '../../../lib/server/middleware/withAuth';
 import withRoles from '../../../lib/server/middleware/withRoles';
+
+/* Model */
 import User from '../../../lib/server/models/userModel';
 
 async function handler(req, res) {
