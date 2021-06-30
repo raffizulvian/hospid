@@ -1,4 +1,6 @@
+import withAuth from '../../../lib/server/middleware/withAuth';
 import withCookie from '../../../lib/server/middleware/withCookie';
+import withRoles from '../../../lib/server/middleware/withRoles';
 import withToken from '../../../lib/server/middleware/withToken';
 import User from '../../../lib/server/models/userModel';
 
@@ -29,4 +31,6 @@ async function handler(req, res) {
   }
 }
 
-export default withCookie(withToken(handler));
+const permittedRoles = { POST: ['admin', 'patient'] };
+
+export default withAuth(withRoles(withCookie(withToken(handler)), permittedRoles));
