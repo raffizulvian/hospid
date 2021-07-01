@@ -16,6 +16,7 @@
   ],
   "rules": {
     "operator-linebreak": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "object-curly-newline": ["error", { "multiline": true }],
     "comma-dangle": [
       "error",
