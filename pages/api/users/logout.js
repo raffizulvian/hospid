@@ -20,7 +20,7 @@ async function handler(req, res) {
       }
 
       try {
-        const token = await Token.revoke({ uid, refreshToken });
+        const token = await Token.revoke({ uid, token: refreshToken });
 
         res.clearToken();
         res.status(200).json({ token });
