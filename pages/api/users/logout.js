@@ -35,7 +35,7 @@ async function handler(req, res) {
   }
 }
 
-const API_ID = 'logout';
+const API_ID = 'users_logout';
 const ROLES = { POST: ['admin', 'patient'] };
 
 export default withAuth(withRoles(withValidator(withCookie(withToken(handler)), API_ID), ROLES));

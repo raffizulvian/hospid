@@ -24,6 +24,6 @@ async function handler(req, res) {
   }
 }
 
-const API_ID = 'signup';
+const API_ID = 'users_signup';
 
 export default withValidator(handler, API_ID);

@@ -31,6 +31,6 @@ async function handler(req, res) {
   }
 }
 
-const API_ID = 'login';
+const API_ID = 'users_login';
 
 export default withValidator(withCookie(withToken(handler)), API_ID);
