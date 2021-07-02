@@ -11,7 +11,7 @@ async function handler(req, res) {
       const { doctorName, description, capacity } = req.body;
 
       try {
-        const id = await Appointment.create(doctorName, description, capacity);
+        const id = await Appointment.create({ doctorName, description, capacity });
         res.status(200).json({ id });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });

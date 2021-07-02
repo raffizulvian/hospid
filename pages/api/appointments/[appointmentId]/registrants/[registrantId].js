@@ -11,7 +11,7 @@ async function handler(req, res) {
       const { appointmentId, registrantId } = req.query;
 
       try {
-        const id = await Appointment.cancel(registrantId, appointmentId);
+        const id = await Appointment.cancel({ registrantId, appointmentId });
         res.status(200).json({ id });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
