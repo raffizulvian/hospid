@@ -16,7 +16,7 @@ async function handler(req, res) {
       }
 
       try {
-        const token = await Token.refresh({ refreshToken });
+        const token = await Token.refresh({ token: refreshToken });
 
         res.token(token.accessToken, token.refreshToken);
         res.status(200).end();
