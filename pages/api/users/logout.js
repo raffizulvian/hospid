@@ -6,7 +6,7 @@ import withToken from '../../../lib/server/middleware/withToken';
 import withValidator from '../../../lib/server/middleware/withValidator';
 
 /* Model */
-import User from '../../../lib/server/models/userModel';
+import Token from '../../../lib/server/models/tokenModel';
 
 async function handler(req, res) {
   switch (req.method) {
@@ -20,7 +20,7 @@ async function handler(req, res) {
       }
 
       try {
-        const id = await User.logout({ uid, refreshToken });
+        const id = await Token.revoke({ uid, refreshToken });
 
         res.clearToken();
         res.status(200).json({ id });
