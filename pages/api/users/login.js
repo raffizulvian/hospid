@@ -4,6 +4,7 @@ import withToken from '../../../lib/server/middleware/withToken';
 import withValidator from '../../../lib/server/middleware/withValidator';
 
 /* Model */
+import Token from '../../../lib/server/models/tokenModel';
 import User from '../../../lib/server/models/userModel';
 
 async function handler(req, res) {
@@ -14,9 +15,10 @@ async function handler(req, res) {
 
       try {
         const user = await User.login({ username, password, type });
+        const token = await Token.create({ user });
 
-        res.token(user.token.accessToken, user.token.refreshToken);
-        res.status(200).json(user.data);
+        res.token(token.accessToken, token.refreshToken);
+        res.status(200).json(user);
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
       }
