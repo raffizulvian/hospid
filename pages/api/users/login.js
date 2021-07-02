@@ -15,7 +15,7 @@ async function handler(req, res) {
 
       try {
         const user = await User.login({ uid, password, role });
-        const token = await Token.create({ user });
+        const token = await Token.create({ claims: user });
 
         res.token(token.accessToken, token.refreshToken);
         res.status(200).json(user);
