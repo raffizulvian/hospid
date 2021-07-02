@@ -20,10 +20,10 @@ async function handler(req, res) {
       }
 
       try {
-        const id = await Token.revoke({ uid, refreshToken });
+        const token = await Token.revoke({ uid, refreshToken });
 
         res.clearToken();
-        res.status(200).json({ id });
+        res.status(200).json({ token });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
       }
