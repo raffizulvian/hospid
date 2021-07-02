@@ -1,6 +1,7 @@
 /* Middleware */
 import withAuth from '../../../lib/server/middleware/withAuth';
 import withRoles from '../../../lib/server/middleware/withRoles';
+import withValidator from '../../../lib/server/middleware/withValidator';
 
 /* Model */
 import Appointment from '../../../lib/server/models/appointmentModel';
@@ -34,6 +35,7 @@ async function handler(req, res) {
   }
 }
 
-const permittedRoles = { POST: ['admin'], GET: ['all'] };
+const API_ID = 'appointment_create';
+const ROLES = { POST: ['admin'], GET: ['all'] };
 
-export default withAuth(withRoles(handler, permittedRoles));
+export default withAuth(withRoles(withValidator(handler, API_ID), ROLES));
