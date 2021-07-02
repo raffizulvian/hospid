@@ -8,6 +8,7 @@ import Token from '../../lib/server/models/tokenModel';
 async function handler(req, res) {
   switch (req.method) {
     case 'POST': {
+      const { uid } = req.body;
       const refreshToken = req.cookies.RFSTKN;
 
       if (typeof refreshToken === 'undefined') {
@@ -16,7 +17,7 @@ async function handler(req, res) {
       }
 
       try {
-        const token = await Token.refresh({ token: refreshToken });
+        const token = await Token.refresh({ uid, token: refreshToken });
 
         res.token(token.accessToken, token.refreshToken);
         res.status(200).end();
