@@ -12,8 +12,8 @@ async function handler(req, res) {
       const { uid } = req.query;
 
       try {
-        const data = await User.get({ uid });
-        res.status(200).json(data);
+        const user = await User.get({ uid });
+        res.status(200).json(user);
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
       }
