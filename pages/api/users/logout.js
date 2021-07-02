@@ -3,6 +3,7 @@ import withAuth from '../../../lib/server/middleware/withAuth';
 import withCookie from '../../../lib/server/middleware/withCookie';
 import withRoles from '../../../lib/server/middleware/withRoles';
 import withToken from '../../../lib/server/middleware/withToken';
+import withValidator from '../../../lib/server/middleware/withValidator';
 
 /* Model */
 import User from '../../../lib/server/models/userModel';
@@ -19,7 +20,7 @@ async function handler(req, res) {
       }
 
       try {
-        const id = await User.logout(uid, refreshToken);
+        const id = await User.logout({ uid, refreshToken });
 
         res.clearToken();
         res.status(200).json({ id });
@@ -34,6 +35,7 @@ async function handler(req, res) {
   }
 }
 
-const permittedRoles = { POST: ['admin', 'patient'] };
+const API_ID = 'logout';
+const ROLES = { POST: ['admin', 'patient'] };
 
-export default withAuth(withRoles(withCookie(withToken(handler)), permittedRoles));
+export default withAuth(withRoles(withValidator(withCookie(withToken(handler)), API_ID), ROLES));

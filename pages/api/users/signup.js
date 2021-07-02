@@ -1,6 +1,10 @@
+/* Middleware */
+import withValidator from '../../../lib/server/middleware/withValidator';
+
+/* Models */
 import User from '../../../lib/server/models/userModel';
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   switch (req.method) {
     case 'POST': {
       const { data } = req.body;
@@ -19,3 +23,7 @@ export default async function handler(req, res) {
       break;
   }
 }
+
+const API_ID = 'signup';
+
+export default withValidator(handler, API_ID);

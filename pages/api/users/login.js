@@ -1,6 +1,7 @@
 /* Middleware */
 import withCookie from '../../../lib/server/middleware/withCookie';
 import withToken from '../../../lib/server/middleware/withToken';
+import withValidator from '../../../lib/server/middleware/withValidator';
 
 /* Model */
 import User from '../../../lib/server/models/userModel';
@@ -28,4 +29,6 @@ async function handler(req, res) {
   }
 }
 
-export default withCookie(withToken(handler));
+const API_ID = 'login';
+
+export default withValidator(withCookie(withToken(handler)), API_ID);
