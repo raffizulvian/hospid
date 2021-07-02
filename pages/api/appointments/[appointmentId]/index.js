@@ -13,8 +13,8 @@ async function handler(req, res) {
       const { doctor, description, capacity } = req.body;
 
       try {
-        const id = await Appointment.update({ aid, doctor, description, capacity });
-        res.status(201).json({ id });
+        const appointment = await Appointment.update({ aid, doctor, description, capacity });
+        res.status(201).json({ appointment });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
       }
@@ -25,8 +25,8 @@ async function handler(req, res) {
       const { aid } = req.query;
 
       try {
-        const id = await Appointment.delete({ aid });
-        res.status(200).json({ id });
+        const deletedId = await Appointment.delete({ aid });
+        res.status(200).json({ id: deletedId });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
       }
@@ -37,8 +37,8 @@ async function handler(req, res) {
       const { uid, aid } = req.body;
 
       try {
-        const id = await Appointment.apply({ uid, aid });
-        res.status(201).json({ id });
+        const appointment = await Appointment.apply({ uid, aid });
+        res.status(201).json({ appointment });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
       }

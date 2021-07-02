@@ -12,8 +12,8 @@ async function handler(req, res) {
       const { doctor, description, capacity } = req.body;
 
       try {
-        const id = await Appointment.create({ doctor, description, capacity });
-        res.status(200).json({ id });
+        const appointment = await Appointment.create({ doctor, description, capacity });
+        res.status(200).json({ appointment });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
       }
@@ -22,8 +22,8 @@ async function handler(req, res) {
 
     case 'GET': {
       try {
-        const data = await Appointment.get();
-        res.status(200).json(data);
+        const appointments = await Appointment.get();
+        res.status(200).json({ appointments });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
       }
