@@ -7,6 +7,9 @@ import withValidator from '../../../lib/server/middleware/withValidator';
 import Token from '../../../lib/server/models/tokenModel';
 import User from '../../../lib/server/models/userModel';
 
+/* Utility */
+import { fifteenMinutes } from '.../../../lib/server/utils/token';
+
 async function handler(req, res) {
   switch (req.method) {
     case 'POST': {
@@ -18,7 +21,7 @@ async function handler(req, res) {
         const token = await Token.create({ claims: user });
 
         res.token(token.accessToken, token.refreshToken);
-        res.status(200).json(user);
+        res.status(200).json({ user, expire: fifteenMinutes });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
       }
