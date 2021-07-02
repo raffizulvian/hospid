@@ -8,10 +8,10 @@ import Appointment from '../../../lib/server/models/appointmentModel';
 async function handler(req, res) {
   switch (req.method) {
     case 'POST': {
-      const { doctorName, description, capacity } = req.body;
+      const { doctor, description, capacity } = req.body;
 
       try {
-        const id = await Appointment.create({ doctorName, description, capacity });
+        const id = await Appointment.create({ doctor, description, capacity });
         res.status(200).json({ id });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
