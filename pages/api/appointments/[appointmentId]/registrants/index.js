@@ -8,10 +8,10 @@ import Appointment from '../../../../../lib/server/models/appointmentModel';
 async function handler(req, res) {
   switch (req.method) {
     case 'GET': {
-      const { appointmentId } = req.query;
+      const { aid } = req.query;
 
       try {
-        const data = await Appointment.getRegistrants({ appointmentId });
+        const data = await Appointment.getRegistrants({ aid });
         res.status(200).json(data);
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });

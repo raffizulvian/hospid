@@ -8,10 +8,10 @@ import Appointment from '../../../../../lib/server/models/appointmentModel';
 async function handler(req, res) {
   switch (req.method) {
     case 'POST': {
-      const { appointmentId, registrantId } = req.query;
+      const { uid, aid } = req.query;
 
       try {
-        const id = await Appointment.cancel({ registrantId, appointmentId });
+        const id = await Appointment.cancel({ uid, aid });
         res.status(200).json({ id });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });

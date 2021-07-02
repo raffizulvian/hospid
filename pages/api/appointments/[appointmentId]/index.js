@@ -9,11 +9,11 @@ import Appointment from '../../../../lib/server/models/appointmentModel';
 async function handler(req, res) {
   switch (req.method) {
     case 'PUT': {
-      const { appointmentId } = req.query;
-      const { doctorName, description, capacity } = req.body;
+      const { aid } = req.query;
+      const { doctor, description, capacity } = req.body;
 
       try {
-        const id = await Appointment.update({ appointmentId, doctorName, description, capacity });
+        const id = await Appointment.update({ aid, doctor, description, capacity });
         res.status(201).json({ id });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
@@ -22,10 +22,10 @@ async function handler(req, res) {
     }
 
     case 'DELETE': {
-      const { appointmentId } = req.query;
+      const { aid } = req.query;
 
       try {
-        const id = await Appointment.delete({ appointmentId });
+        const id = await Appointment.delete({ aid });
         res.status(200).json({ id });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
@@ -34,10 +34,10 @@ async function handler(req, res) {
     }
 
     case 'POST': {
-      const { uid, username, aid } = req.body;
+      const { uid, aid } = req.body;
 
       try {
-        const id = await Appointment.apply({ uid, username, aid });
+        const id = await Appointment.apply({ uid, aid });
         res.status(201).json({ id });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });

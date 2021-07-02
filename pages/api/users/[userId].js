@@ -9,10 +9,10 @@ import User from '../../../lib/server/models/userModel';
 async function handler(req, res) {
   switch (req.method) {
     case 'GET': {
-      const { userId } = req.query;
+      const { uid } = req.query;
 
       try {
-        const data = await User.get({ userId });
+        const data = await User.get({ uid });
         res.status(200).json(data);
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });

@@ -10,11 +10,11 @@ import User from '../../../lib/server/models/userModel';
 async function handler(req, res) {
   switch (req.method) {
     case 'POST': {
-      const { type } = req.query;
-      const { username, password } = req.body;
+      const { role } = req.query;
+      const { uid, password } = req.body;
 
       try {
-        const user = await User.login({ username, password, type });
+        const user = await User.login({ uid, password, role });
         const token = await Token.create({ user });
 
         res.token(token.accessToken, token.refreshToken);
