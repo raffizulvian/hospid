@@ -10,7 +10,7 @@ async function handler(req, res) {
       const { data } = req.body;
 
       try {
-        const user = await User.signup(data);
+        const user = await User.create(data);
         res.status(200).json(user);
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
