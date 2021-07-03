@@ -34,7 +34,8 @@ async function handler(req, res) {
     }
 
     case 'POST': {
-      const { uid, aid } = req.body;
+      const { aid } = req.query;
+      const { uid } = req.body;
 
       try {
         const appointment = await Appointment.apply({ uid, aid });

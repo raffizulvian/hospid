@@ -8,7 +8,7 @@ import Token from '../../../lib/server/models/tokenModel';
 import User from '../../../lib/server/models/userModel';
 
 /* Utility */
-import { fifteenMinutes } from '.../../../lib/server/utils/token';
+import { fifteenMinutes } from '../../../lib/server/utils/token';
 
 async function handler(req, res) {
   switch (req.method) {
