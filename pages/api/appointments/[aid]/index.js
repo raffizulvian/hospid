@@ -55,4 +55,4 @@ async function handler(req, res) {
 const API_ID = 'appointment_update_delete_apply';
 const ROLES = { POST: ['patient'], DELETE: ['admin'], PUT: ['admin'] };
 
-export default withAuth(withRoles(withValidator(handler, API_ID), ROLES));
+export default withAuth(withRoles(withValidator(handler, API_ID)), ROLES);

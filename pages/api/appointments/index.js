@@ -38,4 +38,4 @@ async function handler(req, res) {
 const API_ID = 'appointment_create';
 const ROLES = { POST: ['admin'], GET: ['all'] };
 
-export default withAuth(withRoles(withValidator(handler, API_ID), ROLES));
+export default withAuth(withRoles(withValidator(handler, API_ID)), ROLES);
