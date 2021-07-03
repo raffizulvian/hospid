@@ -1,5 +1,5 @@
 {
-  "name": "compfest-seleksi",
+  "name": "hospid",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "test:ci": "jest --ci"
   },
   "dependencies": {
     "@sindresorhus/is": "^4.0.1",
