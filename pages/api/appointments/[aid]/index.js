@@ -10,10 +10,10 @@ async function handler(req, res) {
   switch (req.method) {
     case 'PUT': {
       const { aid } = req.query;
-      const { doctor, description, capacity } = req.body;
+      const { doctorName, description, capacity } = req.body;
 
       try {
-        const appointment = await Appointment.update({ aid, doctor, description, capacity });
+        const appointment = await Appointment.update({ aid, doctorName, description, capacity });
         res.status(201).json({ appointment });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
@@ -26,7 +26,7 @@ async function handler(req, res) {
 
       try {
         const deletedId = await Appointment.delete({ aid });
-        res.status(200).json({ id: deletedId });
+        res.status(200).json({ aid: deletedId });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
       }

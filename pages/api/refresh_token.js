@@ -20,7 +20,7 @@ async function handler(req, res) {
         const token = await Token.refresh({ uid, token: refreshToken });
 
         res.token(token.accessToken, token.refreshToken);
-        res.status(200).end();
+        res.status(200).json({ status: 'ok' });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
       }

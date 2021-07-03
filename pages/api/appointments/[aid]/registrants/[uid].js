@@ -12,7 +12,7 @@ async function handler(req, res) {
 
       try {
         const deletedId = await Appointment.cancel({ uid, aid });
-        res.status(200).json({ id: deletedId });
+        res.status(200).json({ aid: deletedId });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
       }

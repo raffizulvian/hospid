@@ -13,7 +13,7 @@ async function handler(req, res) {
 
       try {
         const user = await User.get({ uid });
-        res.status(200).json(user);
+        res.status(200).json({ user });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
       }
