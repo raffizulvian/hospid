@@ -29,4 +29,4 @@ async function handler(req, res) {
 const API_ID = 'users_get';
 const ROLES = { GET: ['patient'] };
 
-export default withAuth(withRoles(withValidator(handler, API_ID)), ROLES);
+export default withAuth(withRoles(withValidator(handler, API_ID), ROLES));

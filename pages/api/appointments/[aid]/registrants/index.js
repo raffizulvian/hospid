@@ -26,4 +26,4 @@ async function handler(req, res) {
 
 const ROLES = { GET: ['admin'] };
 
-export default withAuth(withRoles(handler), ROLES);
+export default withAuth(withRoles(handler, ROLES));

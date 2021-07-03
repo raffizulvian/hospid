@@ -26,4 +26,4 @@ async function handler(req, res) {
 
 const ROLES = { POST: ['patient'] };
 
-export default withAuth(withRoles(handler), ROLES);
+export default withAuth(withRoles(handler, ROLES));
