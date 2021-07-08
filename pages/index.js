@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import ButtonLink from '../components/ButtonLink';
+import ButtonLink from '../components/button/ButtonLink';
 
 function Home() {
   return (
@@ -16,7 +16,7 @@ function Home() {
             </p>
           </div>
           <ButtonLink href='/' big>
-            Daftar Sekarang
+            Daftar sekarang
           </ButtonLink>
         </div>
         <div className='w-72 h-72 md:w-[26rem] md:h-[26rem]'>

@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import BurgerMenu from './BurgerMenu';
-import Navbar from './Navbar';
-import NavLink from './NavLink';
+import { BurgerMenu, Navbar, NavLink } from '../navigation';
 
 function Layout({ children }) {
   return (

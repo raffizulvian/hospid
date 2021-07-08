@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import ButtonLink from './ButtonLink';
+import ButtonLink from '../button/ButtonLink';
 
 function Navbar({ children }) {
   return (
