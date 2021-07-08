@@ -12,7 +12,7 @@ function BurgerMenu({ children, id }) {
             className={`fixed bottom-5 right-5 z-50 flex items-center justify-center h-16 w-16 bg-purple-600 border rounded-full transition backdrop-blur md:hidden ${
               open
                 ? 'text-white border-white bg-opacity-60 border-opacity-50'
-                : 'border-purple-600 bg-opacity-10 border-opacity-30'
+                : 'border-purple-600 bg-opacity-20 border-opacity-50'
             }`}>
             <Transition
               as={Fragment}
@@ -62,7 +62,20 @@ function BurgerMenu({ children, id }) {
             </Transition>
           </Popover.Button>
 
-          <Popover.Overlay className='bg-purple-300 fixed inset-0 z-40 backdrop-filter backdrop-blur bg-opacity-30' />
+          <Transition
+            as={Fragment}
+            show={open}
+            enter='ease-out duration-300'
+            enterFrom='opacity-0'
+            enterTo='opacity-100'
+            leave='ease-in duration-150'
+            leaveFrom='opacity-100'
+            leaveTo='opacity-0'>
+            <Popover.Overlay
+              static
+              className='bg-purple-300 fixed inset-0 z-40 backdrop-filter backdrop-blur bg-opacity-30'
+            />
+          </Transition>
 
           <Transition
             show={open}
