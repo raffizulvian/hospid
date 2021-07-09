@@ -9,7 +9,7 @@ function BurgerMenu({ children, id }) {
         <>
           <Popover.Button
             id={id}
-            className={`fixed bottom-5 right-5 z-50 flex items-center justify-center h-16 w-16 bg-purple-600 border rounded-full transition backdrop-blur md:hidden ${
+            className={`fixed bottom-5 right-5 z-50 flex items-center justify-center h-16 w-16 bg-purple-600 border rounded-full transition backdrop-blur sm:hidden ${
               open
                 ? 'text-white border-white bg-opacity-60 border-opacity-50'
                 : 'border-purple-600 bg-opacity-20 border-opacity-50'
@@ -79,7 +79,7 @@ function BurgerMenu({ children, id }) {
 
           <Transition
             show={open}
-            className='sidepanel fixed inset-0 z-50 overflow-hidden md:hidden'
+            className='sidepanel fixed inset-0 z-50 overflow-hidden sm:hidden'
             enter='ease-out duration-300'
             enterFrom='-left-full opacity-80'
             enterTo='left-0 opacity-100'
