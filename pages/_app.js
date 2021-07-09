@@ -1,4 +1,4 @@
-import { NavbarLayout } from '../components/layout';
+import { AuthLayout, NavbarLayout } from '../components/layout';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
@@ -8,6 +8,13 @@ function MyApp({ Component, pageProps }) {
         <NavbarLayout>
           <Component {...pageProps} />
         </NavbarLayout>
+      );
+
+    case 'auth':
+      return (
+        <AuthLayout role={Component.authRole} title={Component.authTitle}>
+          <Component {...pageProps} />
+        </AuthLayout>
       );
 
     default:
