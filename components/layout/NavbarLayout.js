@@ -2,7 +2,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { BurgerMenu, Navbar, NavLink } from '../navigation';
 
-function Layout({ children }) {
+function NavbarLayout({ children }) {
   return (
     <>
       <Navbar>
@@ -19,7 +19,7 @@ function Layout({ children }) {
           FAQ
         </NavLink>
       </Navbar>
-      <BurgerMenu>
+      <BurgerMenu id='burger'>
         <Link href='/'>
           <a>Hospid</a>
         </Link>
@@ -44,6 +44,6 @@ function Layout({ children }) {
   );
 }
 
-Layout.propTypes = { children: PropTypes.object };
+NavbarLayout.propTypes = { children: PropTypes.object };
 
-export default Layout;
+export default NavbarLayout;

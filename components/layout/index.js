@@ -1,4 +1,4 @@
-import Layout from './Layout';
+import NavbarLayout from './NavbarLayout';
 
 // eslint-disable-next-line import/prefer-default-export
-export { Layout };
+export { NavbarLayout };
