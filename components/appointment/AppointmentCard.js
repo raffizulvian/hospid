@@ -35,10 +35,10 @@ function AppointmentCard({
             </p>
           </div>
           <div className='flex space-x-3'>
-            <ButtonAction id={id} secondary className='hidden md:block' onClick={onSelectMore}>
+            <ButtonAction id={id} secondary className='hidden sm:block' onClick={onSelectMore}>
               Lebih Banyak
             </ButtonAction>
-            <ButtonAction id={id} className='hidden md:block' onClick={onRegister}>
+            <ButtonAction id={id} className='hidden sm:block' onClick={onRegister}>
               Daftar
             </ButtonAction>
           </div>
