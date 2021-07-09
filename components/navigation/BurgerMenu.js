@@ -87,7 +87,7 @@ function BurgerMenu({ children, id }) {
             leaveFrom='left-0 opacity-100'
             leaveTo='-left-full opacity-80'>
             <Popover.Panel static className='absolute inset-0 z-40 w-full flex pointer-events-none'>
-              <div className='w-full max-w-sm min-w-0 bg-opacity-60 border-r border-white pointer-events-auto border-opacity-10 bg-purple-600 backdrop-filter backdrop-blur'>
+              <div className='h-full w-full max-w-sm min-w-0 bg-opacity-60 border-r border-white pointer-events-auto border-opacity-10 bg-purple-600 backdrop-filter backdrop-blur overflow-auto'>
                 <nav className='flex flex-col space-y-4 h-full px-4 py-6 text-xl font-medium text-gray-50'>
                   {children}
                 </nav>
