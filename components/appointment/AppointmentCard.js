@@ -21,7 +21,7 @@ function AppointmentCard({
         <h3 className='text-xl font-semibold max-w-prose line-clamp-1'>{doctorName}</h3>
         <p className='text-sm max-w-prose line-clamp-2 mt-1'>
           {description}
-          <span className='md:hidden'>lebih banyak...</span>
+          <span className='sm:hidden'>lebih banyak...</span>
         </p>
         <div className='flex justify-between items-center h-10 mt-3'>
           <div>
