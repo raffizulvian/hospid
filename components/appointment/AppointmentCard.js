@@ -13,7 +13,7 @@ function AppointmentCard({
 }) {
   return (
     <div className='flex space-x-3 h-[8.75rem] px-3 mx-4 border shadow'>
-      <div className='flex flex-col justify-center items-center w-1/5 max-w-[8rem]'>
+      <div className='flex flex-col justify-center items-center w-1/12 sm:w-1/5 max-w-[8rem]'>
         <p className='text-lg font-medium tracking-wide'>SLOT</p>
         <p className='text-3xl font-semibold'>{slot}</p>
       </div>
@@ -21,6 +21,7 @@ function AppointmentCard({
         <h3 className='text-xl font-semibold max-w-prose line-clamp-1'>{doctorName}</h3>
         <p className='text-sm max-w-prose line-clamp-2 mt-1'>
           {description}
+          &nbsp;
           <span className='sm:hidden'>lebih banyak...</span>
         </p>
         <div className='flex justify-between items-center h-10 mt-3'>
