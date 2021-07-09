@@ -28,6 +28,6 @@ function Home() {
 }
 
 Home.id = 'home';
-Home.withNavbar = true;
+Home.layout = 'navbar';
 
 export default Home;
