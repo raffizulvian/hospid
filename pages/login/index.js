@@ -1,20 +1,16 @@
+import { useRouter } from 'next/dist/client/router';
 import { useState } from 'react';
 import ButtonAction from '../../components/button/ButtonAction';
 import NavLink from '../../components/navigation/NavLink';
+import { login } from '../../lib/client/helper/auth';
+import { togglePassword } from '../../lib/client/utils';
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [uid, setUid] = useState('');
   const [password, setPassword] = useState('');
   const [passwordType, setPasswordType] = useState('password');
 
-  function togglePassword(e) {
-    e.preventDefault();
-    if (passwordType === 'password') {
-      setPasswordType('text');
-    } else {
-      setPasswordType('password');
-    }
-  }
+  const router = useRouter();
 
   return (
     <>
@@ -24,14 +20,13 @@ function Login() {
         </label>
         <input
           type='text'
+          id='username-input'
           placeholder='bambang1624'
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-            console.log(username);
-          }}
+          value={uid}
+          onChange={(e) => setUid(e.target.value)}
           className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-purple-600'
         />
+
         <label htmlFor='password' className='text-gray-700 mt-4'>
           Password
         </label>
@@ -42,13 +37,13 @@ function Login() {
             id='password-input'
             placeholder='********'
             value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              console.log(password);
-            }}
+            onChange={(e) => setPassword(e.target.value)}
             className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-purple-600'
           />
-          <button onClick={togglePassword} className='absolute right-2 bottom-2 p-1'>
+
+          <button
+            onClick={(e) => togglePassword(e, passwordType, setPasswordType)}
+            className='absolute right-2 bottom-2 p-1'>
             {passwordType === 'password' && (
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -79,10 +74,14 @@ function Login() {
             )}
           </button>
         </div>
-        <ButtonAction big className='mt-10'>
+        <ButtonAction
+          big
+          className='mt-10'
+          onClick={(e) => login(e, uid, password, 'patient', router)}>
           Login
         </ButtonAction>
       </form>
+
       <p className='flex justify-center text-sm text-gray-600 mt-3'>
         Belum punya akun?&nbsp;
         <NavLink href='/signup'>Sign up</NavLink>
