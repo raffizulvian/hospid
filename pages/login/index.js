@@ -5,7 +5,7 @@ import NavLink from '../../components/navigation/NavLink';
 import { login } from '../../lib/client/helper/auth';
 import { togglePassword } from '../../lib/client/utils';
 
-function Login() {
+function Login({ setCurrentUser }) {
   const [uid, setUid] = useState('');
   const [password, setPassword] = useState('');
   const [passwordType, setPasswordType] = useState('password');
@@ -77,7 +77,7 @@ function Login() {
         <ButtonAction
           big
           className='mt-10'
-          onClick={(e) => login(e, uid, password, 'patient', router)}>
+          onClick={(e) => login(e, uid, password, 'patient', router, setCurrentUser)}>
           Login
         </ButtonAction>
       </form>
