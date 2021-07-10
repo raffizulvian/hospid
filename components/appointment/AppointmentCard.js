@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import ButtonAction from '../button/ButtonAction';
 
 function AppointmentCard({
-  id,
+  aid,
   slot,
   doctorName,
   description,
@@ -36,10 +36,10 @@ function AppointmentCard({
             </p>
           </div>
           <div className='flex space-x-3'>
-            <ButtonAction id={id} secondary className='hidden sm:block' onClick={onSelectMore}>
+            <ButtonAction id={aid} secondary className='hidden sm:block' onClick={onSelectMore}>
               Lebih Banyak
             </ButtonAction>
-            <ButtonAction id={id} className='hidden sm:block' onClick={onRegister}>
+            <ButtonAction id={aid} className='hidden sm:block' onClick={onRegister}>
               Daftar
             </ButtonAction>
           </div>
@@ -50,7 +50,12 @@ function AppointmentCard({
 }
 
 AppointmentCard.propTypes = {
-  id: PropTypes.string.isRequired,
+  aid: PropTypes.string.isRequired,
+  slot: PropTypes.number.isRequired,
+  doctorName: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  capacity: PropTypes.number.isRequired,
+  totalRegistered: PropTypes.number.isRequired,
   onSelectMore: PropTypes.func.isRequired,
   onRegister: PropTypes.func.isRequired,
 };
