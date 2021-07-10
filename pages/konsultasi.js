@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import { AppointmentCard } from '../components/appointment';
-import { get } from '../lib/client';
+import { get } from '../lib/client/fetcher';
 
 function Konsultasi({ data: initialData }) {
   const { data } = useSWR('/api/appointments', get, { initialData });
