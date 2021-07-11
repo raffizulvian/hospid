@@ -1,4 +1,4 @@
 import AppointmentCard from './AppointmentCard';
+import AppointmentRegisteredCard from './AppointmentRegisteredCard';
 
-// eslint-disable-next-line import/prefer-default-export
-export { AppointmentCard };
+export { AppointmentCard, AppointmentRegisteredCard };
