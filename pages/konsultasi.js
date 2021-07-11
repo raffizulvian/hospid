@@ -4,13 +4,15 @@ import { useRouter } from 'next/router';
 import { AppointmentCard } from '../components/appointment';
 import { get } from '../lib/client/fetcher';
 import { onRegister } from '../lib/client/helper/register';
-import { getuid } from '../lib/client/helper/auth';
+import { getUser } from '../lib/client/helper/auth';
 
-function Konsultasi({ initialData, uid, isLogin }) {
+function Konsultasi({ initialData, user, uid, isLogin, setCurrentUser }) {
   const { data } = useSWR('/api/appointments', get, { initialData });
   const { appointments } = data;
 
   const router = useRouter();
+
+  setCurrentUser(user);
 
   return (
     <main className='main w-full overflow-x-hidden'>
@@ -49,14 +51,18 @@ export async function getServerSideProps(ctx) {
   const refreshToken = cookie.get('RFSTKN');
 
   if (token) {
-    const uid = getuid(token);
-    return { props: { initialData, uid, isLogin: 'full' } };
+    const user = getUser(token);
+    const { uid } = user;
+
+    return { props: { initialData, user, uid, isLogin: 'full' } };
   }
 
   if (refreshToken) {
-    const uid = getuid(refreshToken);
-    return { props: { initialData, uid, isLogin: 'partial' } };
+    const user = getUser(refreshToken);
+    const { uid } = user;
+
+    return { props: { initialData, user, uid, isLogin: 'partial' } };
   }
 
-  return { props: { initialData, uid: null, isLogin: 'no' } };
+  return { props: { initialData, user: null, uid: null, isLogin: 'no' } };
 }
