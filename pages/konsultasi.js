@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { AppointmentCard } from '../components/appointment';
 import { get } from '../lib/client/fetcher';
 import { onRegister } from '../lib/client/helper/register';
-import { getuid } from '../lib/client/helper/auth/getUser';
+import { getuid } from '../lib/client/helper/auth';
 
 function Konsultasi({ initialData, uid, isLogin }) {
   const { data } = useSWR('/api/appointments', get, { initialData });
