@@ -9,9 +9,11 @@ import { get, post } from '../lib/client/fetcher';
 import { onCancel } from '../lib/client/helper/register';
 import { setAccessOptions, setRefreshOptions } from '../lib/server/utils/token';
 
-function Dashboard({ user, initialData }) {
+function Dashboard({ user, initialData, setCurrentUser }) {
   const { data } = useSWR(`/api/users/${user.uid}/appointments`, get, { initialData });
   const { appointments } = data;
+
+  setCurrentUser(user);
 
   return (
     <main className='main overflow-y-auto'>
@@ -61,7 +63,7 @@ function Dashboard({ user, initialData }) {
               aid={appointment.aid}
               doctorName={appointment.doctorName}
               description={appointment.description}
-              onCancel={(e) => onCancel(e, user.uid)}
+              onCancel={(e) => onCancel(e, user.uid, appointments)}
             />
           ))}
 
@@ -95,6 +97,7 @@ export async function getServerSideProps(ctx) {
         Cookie: `token=${token}; RFSTKN=${refreshToken};`,
       },
     });
+
     return { props: { user, initialData } };
   }
 
@@ -121,6 +124,7 @@ export async function getServerSideProps(ctx) {
           Cookie: `token=${token}; RFSTKN=${refreshToken};`,
         },
       });
+
       return { props: { user, initialData } };
     }
   }
