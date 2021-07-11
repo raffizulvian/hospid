@@ -1,10 +1,10 @@
 /* Middleware */
-import withAuth from '../../../lib/server/middleware/withAuth';
-import withRoles from '../../../lib/server/middleware/withRoles';
-import withValidator from '../../../lib/server/middleware/withValidator';
+import withAuth from '../../../../lib/server/middleware/withAuth';
+import withRoles from '../../../../lib/server/middleware/withRoles';
+import withValidator from '../../../../lib/server/middleware/withValidator';
 
 /* Model */
-import User from '../../../lib/server/models/userModel';
+import User from '../../../../lib/server/models/userModel';
 
 async function handler(req, res) {
   switch (req.method) {
@@ -12,8 +12,8 @@ async function handler(req, res) {
       const { uid } = req.query;
 
       try {
-        const user = await User.get({ uid });
-        res.status(200).json({ user });
+        const appointments = await User.getAppointments({ uid });
+        res.status(200).json({ appointments });
       } catch (err) {
         res.status(err.code || 500).json({ message: err.message });
       }
@@ -26,7 +26,7 @@ async function handler(req, res) {
   }
 }
 
-const API_ID = 'users_get';
+const API_ID = 'users_appointments';
 const ROLES = { GET: ['patient'] };
 
 export default withAuth(withRoles(withValidator(handler, API_ID), ROLES));
