@@ -1,7 +1,20 @@
 import Image from 'next/image';
+import { useEffect } from 'react';
+import { useCookie } from 'next-cookie';
+
 import ButtonLink from '../components/button/ButtonLink';
 
-function Home() {
+import { getUser } from '../lib/client/helper/auth';
+import { ACTIONS } from '../lib/client/context/AuthContext';
+import { useAuthDispatch } from '../lib/client/context/hooks';
+
+function Home({ user, loginStatus }) {
+  const dispatch = useAuthDispatch();
+
+  useEffect(() => {
+    dispatch({ type: ACTIONS.UPDATE, payload: { user, loginStatus } });
+  }, [dispatch, loginStatus, user]);
+
   return (
     <main className='main w-full overflow-x-hidden overflow-y-auto'>
       <section className='flex flex-col-reverse justify-end items-center h-full max-w-screen-lg mx-auto px-[4%] py-8 lg:px-0 md:flex-row md:justify-between'>
@@ -31,3 +44,25 @@ Home.id = 'home';
 Home.layout = 'navbar';
 
 export default Home;
+
+export async function getServerSideProps(ctx) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const cookie = useCookie(ctx);
+
+  const token = cookie.get('token');
+  const refreshToken = cookie.get('RFSTKN');
+
+  if (token) {
+    const user = getUser(token);
+
+    return { props: { user, loginStatus: 'full' } };
+  }
+
+  if (refreshToken) {
+    const user = getUser(refreshToken);
+
+    return { props: { user, loginStatus: 'partial' } };
+  }
+
+  return { props: { user: null, loginStatus: 'no' } };
+}
