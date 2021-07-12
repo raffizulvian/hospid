@@ -1,19 +1,28 @@
 import Image from 'next/image';
 import useSWR from 'swr';
+import { useEffect } from 'react';
 import { useCookie } from 'next-cookie';
 
 import { AppointmentRegisteredCard } from '../components/appointment';
 import { ButtonLink } from '../components/button';
-import { getUser } from '../lib/client/helper/auth';
+
 import { get, post } from '../lib/client/fetcher';
+import { getUser } from '../lib/client/helper/auth';
 import { onCancel } from '../lib/client/helper/register';
+import { useAuthDispatch } from '../lib/client/context/hooks';
+import { ACTIONS } from '../lib/client/context/AuthContext';
+
 import { setAccessOptions, setRefreshOptions } from '../lib/server/utils/token';
 
-function Dashboard({ user, initialData, setCurrentUser }) {
+function Dashboard({ user, initialData, loginStatus }) {
   const { data } = useSWR(`/api/users/${user.uid}/appointments`, get, { initialData });
   const { appointments } = data;
 
-  setCurrentUser(user);
+  const dispatch = useAuthDispatch();
+
+  useEffect(() => {
+    dispatch({ type: ACTIONS.UPDATE, payload: { user, loginStatus } });
+  }, [dispatch, loginStatus, user]);
 
   return (
     <main className='main overflow-y-auto'>
@@ -98,7 +107,7 @@ export async function getServerSideProps(ctx) {
       },
     });
 
-    return { props: { user, initialData } };
+    return { props: { user, initialData, loginStatus: 'full' } };
   }
 
   if (refreshToken) {
@@ -125,7 +134,7 @@ export async function getServerSideProps(ctx) {
         },
       });
 
-      return { props: { user, initialData } };
+      return { props: { user, initialData, loginStatus: 'partial' } };
     }
   }
 

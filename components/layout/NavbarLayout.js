@@ -2,10 +2,10 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { BurgerMenu, Navbar, NavLink } from '../navigation';
 
-function NavbarLayout({ children, isLogin }) {
+function NavbarLayout({ children }) {
   return (
     <>
-      <Navbar isLogin={isLogin}>
+      <Navbar>
         <NavLink href='/' color='text-gray-900'>
           Home
         </NavLink>
@@ -44,6 +44,6 @@ function NavbarLayout({ children, isLogin }) {
   );
 }
 
-NavbarLayout.propTypes = { children: PropTypes.object, isLogin: PropTypes.bool.isRequired };
+NavbarLayout.propTypes = { children: PropTypes.object };
 
 export default NavbarLayout;

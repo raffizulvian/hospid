@@ -1,18 +1,27 @@
 import useSWR from 'swr';
-import { useCookie } from 'next-cookie';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useCookie } from 'next-cookie';
+
 import { AppointmentCard } from '../components/appointment';
+
 import { get } from '../lib/client/fetcher';
 import { onRegister } from '../lib/client/helper/register';
 import { getUser } from '../lib/client/helper/auth';
+import { useAuthDispatch } from '../lib/client/context/hooks';
+import { ACTIONS } from '../lib/client/context/AuthContext';
 
-function Konsultasi({ initialData, user, uid, isLogin, setCurrentUser }) {
+function Konsultasi({ initialData, user, uid, loginStatus }) {
   const { data } = useSWR('/api/appointments', get, { initialData });
   const { appointments } = data;
 
   const router = useRouter();
 
-  setCurrentUser(user);
+  const dispatch = useAuthDispatch();
+
+  useEffect(() => {
+    dispatch({ type: ACTIONS.UPDATE, payload: { user, loginStatus } });
+  }, [dispatch, loginStatus, user]);
 
   return (
     <main className='main w-full overflow-x-hidden'>
@@ -28,7 +37,7 @@ function Konsultasi({ initialData, user, uid, isLogin, setCurrentUser }) {
               description={appointment.description}
               capacity={appointment.capacity}
               totalRegistered={appointment.totalRegistered}
-              onRegister={(e) => onRegister(e, uid, isLogin, router)}
+              onRegister={(e) => onRegister(e, uid, loginStatus, router)}
             />
           );
         })}
@@ -54,15 +63,15 @@ export async function getServerSideProps(ctx) {
     const user = getUser(token);
     const { uid } = user;
 
-    return { props: { initialData, user, uid, isLogin: 'full' } };
+    return { props: { initialData, user, uid, loginStatus: 'full' } };
   }
 
   if (refreshToken) {
     const user = getUser(refreshToken);
     const { uid } = user;
 
-    return { props: { initialData, user, uid, isLogin: 'partial' } };
+    return { props: { initialData, user, uid, loginStatus: 'partial' } };
   }
 
-  return { props: { initialData, user: null, uid: null, isLogin: 'no' } };
+  return { props: { initialData, user: null, uid: null, loginStatus: 'no' } };
 }

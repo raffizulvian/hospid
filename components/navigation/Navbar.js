@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types';
-import ButtonLink from '../button/ButtonLink';
 
-function Navbar({ children, isLogin }) {
+import ButtonLink from '../button/ButtonLink';
+import { useAuthState } from '../../lib/client/context/hooks';
+
+function Navbar({ children }) {
+  const state = useAuthState();
+  const isLogin = state.loginStatus === 'full' || state.loginStatus === 'partial';
+
   return (
     <header className='sticky top-0 h-[4.5rem] w-full px-[4%] py-4 shadow-md z-30 bg-white lg:px-0'>
       <div className='flex items-center h-full w-full max-w-screen-lg mx-auto'>
