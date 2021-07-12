@@ -83,7 +83,7 @@ function Login() {
         <ButtonAction
           big
           className='mt-10'
-          onClick={(e) => login(e, uid, password, 'patient', router, dispatch)}>
+          onClick={(e) => login(e, uid, password, 'admin', router, dispatch)}>
           Login
         </ButtonAction>
       </form>
