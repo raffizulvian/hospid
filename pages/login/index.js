@@ -1,16 +1,21 @@
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
+
 import ButtonAction from '../../components/button/ButtonAction';
 import NavLink from '../../components/navigation/NavLink';
+
 import { login } from '../../lib/client/helper/auth';
 import { togglePassword } from '../../lib/client/utils';
+import { useAuthDispatch } from '../../lib/client/context/hooks';
 
-function Login({ setCurrentUser }) {
+function Login() {
   const [uid, setUid] = useState('');
   const [password, setPassword] = useState('');
   const [passwordType, setPasswordType] = useState('password');
 
   const router = useRouter();
+
+  const dispatch = useAuthDispatch();
 
   return (
     <>
@@ -77,7 +82,7 @@ function Login({ setCurrentUser }) {
         <ButtonAction
           big
           className='mt-10'
-          onClick={(e) => login(e, uid, password, 'patient', router, setCurrentUser)}>
+          onClick={(e) => login(e, uid, password, 'patient', router, dispatch)}>
           Login
         </ButtonAction>
       </form>
@@ -86,6 +91,7 @@ function Login({ setCurrentUser }) {
         Belum punya akun?&nbsp;
         <NavLink href='/signup'>Sign up</NavLink>
       </p>
+
       <p className='flex justify-center text-sm text-gray-600 mt-1'>
         Bukan pasien? Login sebagai&nbsp;
         <NavLink href='/login/admin'>admin</NavLink>
