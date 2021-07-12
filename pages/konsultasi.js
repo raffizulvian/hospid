@@ -11,7 +11,7 @@ import { getUser } from '../lib/client/helper/auth';
 import { useAuthDispatch } from '../lib/client/context/hooks';
 import { ACTIONS } from '../lib/client/context/AuthContext';
 
-function Konsultasi({ initialData, user, uid, loginStatus }) {
+function Konsultasi({ initialData, user, loginStatus }) {
   const { data } = useSWR('/api/appointments', get, { initialData });
   const { appointments } = data;
 
@@ -37,7 +37,7 @@ function Konsultasi({ initialData, user, uid, loginStatus }) {
               description={appointment.description}
               capacity={appointment.capacity}
               totalRegistered={appointment.totalRegistered}
-              onRegister={(e) => onRegister(e, uid, loginStatus, router)}
+              onRegister={(e) => onRegister(e, user.uid, loginStatus, router)}
             />
           );
         })}
@@ -61,17 +61,15 @@ export async function getServerSideProps(ctx) {
 
   if (token) {
     const user = getUser(token);
-    const { uid } = user;
 
-    return { props: { initialData, user, uid, loginStatus: 'full' } };
+    return { props: { initialData, user, loginStatus: 'full' } };
   }
 
   if (refreshToken) {
     const user = getUser(refreshToken);
-    const { uid } = user;
 
-    return { props: { initialData, user, uid, loginStatus: 'partial' } };
+    return { props: { initialData, user, loginStatus: 'partial' } };
   }
 
-  return { props: { initialData, user: null, uid: null, loginStatus: 'no' } };
+  return { props: { initialData, user: null, loginStatus: 'no' } };
 }
