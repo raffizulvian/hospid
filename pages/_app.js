@@ -15,9 +15,11 @@ function MyApp({ Component, pageProps }) {
 
     case 'auth':
       return (
-        <AuthLayout role={Component.authRole} title={Component.authTitle}>
-          <Component {...pageProps} />
-        </AuthLayout>
+        <AuthProvider>
+          <AuthLayout role={Component.authRole} title={Component.authTitle}>
+            <Component {...pageProps} />
+          </AuthLayout>
+        </AuthProvider>
       );
 
     default:
