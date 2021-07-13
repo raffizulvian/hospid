@@ -35,9 +35,13 @@ function Navbar({ children }) {
                 <ButtonLink href='/signup'>Sign up</ButtonLink>
               </>
             )}
-            {isLogin && path !== '/dashboard' && <ButtonLink href='/dashboard'>Profil</ButtonLink>}
+            {isLogin && path !== '/dashboard' && (
+              <ButtonLink secondary href='/dashboard'>
+                Profil
+              </ButtonLink>
+            )}
             {isLogin && path === '/dashboard' && (
-              <ButtonAction onClick={() => logout(state.user.uid, router, dispatch)}>
+              <ButtonAction secondary onClick={() => logout(state.user.uid, router, dispatch)}>
                 Logout
               </ButtonAction>
             )}
