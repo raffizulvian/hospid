@@ -130,7 +130,7 @@ export async function getServerSideProps(ctx) {
       const initialData = await get(`http://localhost:3000/api/users/${user.uid}/appointments`, {
         headers: {
           withCredentials: true,
-          Cookie: `token=${token}; RFSTKN=${refreshToken};`,
+          Cookie: `token=${res.token.accessToken}; RFSTKN=${res.token.refreshToken};`,
         },
       });
 
