@@ -1,11 +1,19 @@
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 
-import ButtonLink from '../button/ButtonLink';
-import { useAuthState } from '../../lib/client/context/hooks';
+import { ButtonAction, ButtonLink } from '../button';
+
+import { useAuthDispatch, useAuthState } from '../../lib/client/context/hooks';
+import { logout } from '../../lib/client/helper/auth';
 
 function Navbar({ children }) {
   const state = useAuthState();
   const isLogin = state.loginStatus === 'full' || state.loginStatus === 'partial';
+
+  const router = useRouter();
+  const path = router.pathname;
+
+  const dispatch = useAuthDispatch();
 
   return (
     <header className='sticky top-0 h-[4.5rem] w-full px-[4%] py-4 shadow-md z-30 bg-white lg:px-0'>
@@ -27,11 +35,28 @@ function Navbar({ children }) {
                 <ButtonLink href='/signup'>Sign up</ButtonLink>
               </>
             )}
-            {isLogin && <ButtonLink href='/dashboard'>Profil</ButtonLink>}
+            {isLogin && path !== '/dashboard' && <ButtonLink href='/dashboard'>Profil</ButtonLink>}
+            {isLogin && path === '/dashboard' && (
+              <ButtonAction onClick={() => logout(state.user.uid, router, dispatch)}>
+                Logout
+              </ButtonAction>
+            )}
           </div>
-          <ButtonLink className='sm:hidden' href={isLogin ? '/dashboard' : '/login'} secondary>
-            {isLogin ? 'Profil' : 'Login'}
-          </ButtonLink>
+          {!isLogin && (
+            <ButtonLink className='sm:hidden' href='/login' secondary>
+              Login
+            </ButtonLink>
+          )}
+          {isLogin && path !== '/dashboard' && (
+            <ButtonLink className='sm:hidden' href='/dashboard' secondary>
+              Profil
+            </ButtonLink>
+          )}
+          {isLogin && path === '/dashboard' && (
+            <ButtonAction onClick={() => logout(state.user.uid, router, dispatch)} secondary>
+              Logout
+            </ButtonAction>
+          )}
         </nav>
       </div>
     </header>
