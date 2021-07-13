@@ -1,6 +1,6 @@
 import { useMachine } from '@xstate/react';
 
-import Form, { PersonalDataInput, AuthDataInput } from '../components/form';
+import Form, { PersonalDataInput, AuthDataInput, InputReview } from '../components/form';
 import NavLink from '../components/navigation/NavLink';
 
 import signupStateMachine from '../lib/client/helper/machine';
@@ -23,6 +23,14 @@ function Signup() {
             defaultValue={current.context}
             onPrev={(value) => send({ type: 'PREV', ...value })}
             onNext={(value) => send({ type: 'NEXT', ...value })}
+          />
+        )}
+
+        {current.matches('review') && (
+          <InputReview
+            defaultValue={current.context}
+            onBack={() => send({ type: 'BACK', confirmation: false })}
+            onSubmit={(value) => send({ type: 'SUBMIT', ...value })}
           />
         )}
       </Form>
