@@ -26,12 +26,14 @@ function AuthLayout({ children, role, title }) {
         </Link>
         <p className='text-lg font-medium leading-[1.45rem] mr-6'>{role}</p>
       </nav>
-      <section className='w-full max-w-screen-lg p-6 mx-auto'>
-        <Image src='/login.svg' alt='' height={200} width={200} />
-        <p className='text-2xl text-gray-900 max-w-prose'>Hallo selamat datang!</p>
+
+      <section className='w-full max-w-screen-lg pb-6 px-6 mx-auto'>
+        <Image src='/login.svg' alt='' height={190} width={190} />
+        <p className='text-2xl font-light text-gray-900 max-w-prose'>Hallo selamat datang!</p>
         <h1 className='text-5xl font-semibold text-gray-900 md:text-7xl'>{title}</h1>
       </section>
-      <section className='w-full max-w-screen-lg p-6 mx-auto'>{children}</section>
+
+      <section className='w-full max-w-screen-lg pb-6 px-6 mx-auto'>{children}</section>
     </main>
   );
 }

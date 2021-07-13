@@ -12,26 +12,37 @@ function Signup() {
     <>
       <Form>
         {current.matches('personalData') && (
-          <PersonalDataInput
-            defaultValue={current.context}
-            onNext={(value) => send({ type: 'NEXT', ...value })}
-          />
+          <>
+            <h2 className='text-xl text-gray-900 tracking-wider uppercase mb-1'>
+              Informasi Pribadi
+            </h2>
+            <PersonalDataInput
+              defaultValue={current.context}
+              onNext={(value) => send({ type: 'NEXT', ...value })}
+            />
+          </>
         )}
 
         {current.matches('authData') && (
-          <AuthDataInput
-            defaultValue={current.context}
-            onPrev={(value) => send({ type: 'PREV', ...value })}
-            onNext={(value) => send({ type: 'NEXT', ...value })}
-          />
+          <>
+            <h2 className='text-xl text-gray-900 tracking-wider uppercase mb-1'>Informasi Akun</h2>
+            <AuthDataInput
+              defaultValue={current.context}
+              onPrev={(value) => send({ type: 'PREV', ...value })}
+              onNext={(value) => send({ type: 'NEXT', ...value })}
+            />
+          </>
         )}
 
         {current.matches('review') && (
-          <InputReview
-            defaultValue={current.context}
-            onBack={() => send({ type: 'BACK', confirmation: false })}
-            onSubmit={(value) => send({ type: 'SUBMIT', ...value })}
-          />
+          <>
+            <h2 className='text-xl text-gray-900 tracking-wider uppercase mb-1'>Konfirmasi</h2>
+            <InputReview
+              defaultValue={current.context}
+              onBack={() => send({ type: 'BACK', confirmation: false })}
+              onSubmit={(value) => send({ type: 'SUBMIT', ...value })}
+            />
+          </>
         )}
       </Form>
 
