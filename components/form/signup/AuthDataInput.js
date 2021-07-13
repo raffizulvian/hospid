@@ -13,7 +13,7 @@ function LoginInput({ defaultValue, onNext, onPrev }) {
   return (
     <>
       <label htmlFor='username' className='text-gray-700'>
-        Username
+        Username <span className='text-purple-600'>*</span>
       </label>
       <input
         type='text'
@@ -25,7 +25,7 @@ function LoginInput({ defaultValue, onNext, onPrev }) {
       />
 
       <label htmlFor='email' className='text-gray-700 mt-4'>
-        Email
+        Email <span className='text-purple-600'>*</span>
       </label>
       <input
         type='text'
@@ -37,7 +37,7 @@ function LoginInput({ defaultValue, onNext, onPrev }) {
       />
 
       <label htmlFor='password' className='text-gray-700 mt-4'>
-        Password
+        Password <span className='text-purple-600'>*</span>
       </label>
       <div className='relative flex'>
         <input

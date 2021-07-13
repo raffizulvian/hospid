@@ -13,7 +13,7 @@ function PersonalDataInput({ defaultValue, onNext }) {
       <div className='flex space-x-4'>
         <div className='w-full'>
           <label htmlFor='firstName-input' className='text-gray-700'>
-            Nama Depan
+            Nama Depan <span className='text-purple-600'>*</span>
           </label>
           <input
             type='text'
@@ -27,7 +27,7 @@ function PersonalDataInput({ defaultValue, onNext }) {
 
         <div className='w-full'>
           <label htmlFor='lastName-input' className='text-gray-700'>
-            Nama Belakang
+            Nama Belakang <span className='text-purple-600'>*</span>
           </label>
           <input
             type='text'
@@ -41,7 +41,7 @@ function PersonalDataInput({ defaultValue, onNext }) {
       </div>
 
       <label htmlFor='age-input' className='text-gray-700 mt-4'>
-        Umur
+        Umur <span className='text-purple-600'>*</span>
       </label>
       <input
         type='number'
