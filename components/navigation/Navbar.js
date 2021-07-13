@@ -53,7 +53,10 @@ function Navbar({ children }) {
             </ButtonLink>
           )}
           {isLogin && path === '/dashboard' && (
-            <ButtonAction onClick={() => logout(state.user.uid, router, dispatch)} secondary>
+            <ButtonAction
+              className='sm:hidden'
+              onClick={() => logout(state.user.uid, router, dispatch)}
+              secondary>
               Logout
             </ButtonAction>
           )}
