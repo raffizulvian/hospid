@@ -53,7 +53,7 @@ function LoginInput({ defaultValue, onNext, onPrev }) {
         <button
           onClick={(e) => togglePassword(e, passwordType, setPasswordType)}
           className='absolute right-2 bottom-2 p-1'>
-          {passwordType === 'password' && (
+          {passwordType === 'text' && (
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-5 w-5'
@@ -67,7 +67,7 @@ function LoginInput({ defaultValue, onNext, onPrev }) {
               />
             </svg>
           )}
-          {passwordType === 'text' && (
+          {passwordType === 'password' && (
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-5 w-5'
