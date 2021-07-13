@@ -19,7 +19,9 @@ function InputReview({ defaultValue, onSubmit, onBack }) {
 
       <div className='flex items-center space-x-2 my-1'>
         <h4 className='text-lg font-medium text-gray-900'>Umur: </h4>
-        <p className='italic text-gray-700'>{defaultValue.age}</p>
+        <p className='italic text-gray-700'>
+          {defaultValue.age} <span>tahun</span>
+        </p>
       </div>
 
       <div className='flex items-center space-x-2 my-1'>
