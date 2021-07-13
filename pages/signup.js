@@ -14,7 +14,7 @@ function Signup() {
         {current.matches('personalData') && (
           <>
             <h2 className='text-xl text-gray-900 tracking-wider uppercase mb-1'>
-              Informasi Pribadi
+              Informasi Pribadi (1/3)
             </h2>
             <PersonalDataInput
               defaultValue={current.context}
@@ -25,7 +25,9 @@ function Signup() {
 
         {current.matches('authData') && (
           <>
-            <h2 className='text-xl text-gray-900 tracking-wider uppercase mb-1'>Informasi Akun</h2>
+            <h2 className='text-xl text-gray-900 tracking-wider uppercase mb-1'>
+              Informasi Akun (2/3)
+            </h2>
             <AuthDataInput
               defaultValue={current.context}
               onPrev={(value) => send({ type: 'PREV', ...value })}
@@ -36,7 +38,9 @@ function Signup() {
 
         {current.matches('review') && (
           <>
-            <h2 className='text-xl text-gray-900 tracking-wider uppercase mb-1'>Konfirmasi</h2>
+            <h2 className='text-xl text-gray-900 tracking-wider uppercase mb-1'>
+              Konfirmasi (3/3)
+            </h2>
             <InputReview
               defaultValue={current.context}
               onBack={() => send({ type: 'BACK', confirmation: false })}
