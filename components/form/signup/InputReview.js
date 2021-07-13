@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+
 import ButtonAction from '../../button/ButtonAction';
 
 function InputReview({ defaultValue, onSubmit, onBack }) {
   const [confirmation, setConfirmation] = useState(defaultValue.confirmation);
+
+  const router = useRouter();
 
   return (
     <>
@@ -55,7 +59,7 @@ function InputReview({ defaultValue, onSubmit, onBack }) {
           big
           disabled={!confirmation}
           className='w-full'
-          onClick={() => onSubmit({ confirmation })}>
+          onClick={(e) => onSubmit(e, { confirmation, router })}>
           Daftar
         </ButtonAction>
       </div>

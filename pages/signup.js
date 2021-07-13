@@ -44,7 +44,10 @@ function Signup() {
             <InputReview
               defaultValue={current.context}
               onBack={() => send({ type: 'BACK', confirmation: false })}
-              onSubmit={(value) => send({ type: 'SUBMIT', ...value })}
+              onSubmit={(e, value) => {
+                e.preventDefault();
+                send({ type: 'CONFIRM', ...value });
+              }}
             />
           </>
         )}
