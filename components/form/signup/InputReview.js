@@ -34,7 +34,7 @@ function InputReview({ defaultValue, onSubmit, onBack }) {
         <p className='italic text-gray-700'>{defaultValue.email}</p>
       </div>
 
-      <div className='flex items-center space-x-2 mt-5'>
+      <div className='flex items-center space-x-2 mt-3'>
         <input
           type='checkbox'
           name='confirmation'
