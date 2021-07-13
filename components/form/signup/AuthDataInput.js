@@ -21,7 +21,7 @@ function LoginInput({ defaultValue, onNext, onPrev }) {
         placeholder='bambang1624'
         value={uid}
         onChange={(e) => setUid(e.target.value)}
-        className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-purple-600'
+        className='mt-0 block w-full pt-1 pb-2 px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-purple-600'
       />
 
       <label htmlFor='email' className='text-gray-700 mt-4'>
@@ -33,7 +33,7 @@ function LoginInput({ defaultValue, onNext, onPrev }) {
         placeholder='bambang@email.com'
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-purple-600'
+        className='mt-0 block w-full pt-1 pb-2 px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-purple-600'
       />
 
       <label htmlFor='password' className='text-gray-700 mt-4'>
@@ -47,7 +47,7 @@ function LoginInput({ defaultValue, onNext, onPrev }) {
           placeholder='********'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-purple-600'
+          className='mt-0 block w-full pt-1 pb-2 px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-purple-600'
         />
 
         <button
