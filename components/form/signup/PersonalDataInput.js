@@ -55,6 +55,7 @@ function PersonalDataInput({ defaultValue, onNext }) {
       <ButtonAction
         big
         className='w-full mt-10'
+        disabled={firstName === '' || lastName === '' || age === '' || age === 0}
         onClick={() => onNext({ firstName, lastName, age })}>
         Selanjutnya
       </ButtonAction>

@@ -88,7 +88,11 @@ function LoginInput({ defaultValue, onNext, onPrev }) {
         <ButtonAction big className='w-full' onClick={() => onPrev({ uid, email, password })}>
           Kembali
         </ButtonAction>
-        <ButtonAction big className='w-full' onClick={() => onNext({ uid, email, password })}>
+        <ButtonAction
+          big
+          disabled={uid === '' || email === '' || password === ''}
+          className='w-full'
+          onClick={() => onNext({ uid, email, password })}>
           Selanjutnya
         </ButtonAction>
       </div>
