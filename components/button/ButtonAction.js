@@ -14,7 +14,7 @@ function ButtonAction({ children, id, onClick, secondary, big, disabled, classNa
         big
           ? 'h-14 min-w-[10rem] text-lg px-6 py-3 md:h-[3.875rem] md:min-w-[12.25rem] md:text-xl md:px-7 md:py-4'
           : 'h-10 min-w-[6rem] text-sm px-3 py-2'
-      } ${disabled && 'bg-purple-400 text-gray-700'} ${className}`}>
+      } ${disabled && 'bg-purple-300'} ${className}`}>
       {children}
     </button>
   );
