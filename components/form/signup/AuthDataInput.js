@@ -30,7 +30,7 @@ function LoginInput({ defaultValue, onNext, onPrev }) {
       <input
         type='text'
         id='email-input'
-        placeholder='bambang1624'
+        placeholder='bambang@email.com'
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-purple-600'
