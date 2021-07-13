@@ -28,7 +28,7 @@ function LoginInput({ defaultValue, onNext, onPrev }) {
         Email <span className='text-purple-600'>*</span>
       </label>
       <input
-        type='text'
+        type='email'
         id='email-input'
         placeholder='bambang@email.com'
         value={email}
