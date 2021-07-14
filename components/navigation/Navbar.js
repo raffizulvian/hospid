@@ -35,12 +35,12 @@ function Navbar({ children }) {
                 <ButtonLink href='/signup'>Sign up</ButtonLink>
               </>
             )}
-            {isLogin && path !== '/dashboard' && (
+            {isLogin && path !== '/dashboard' && path === '/admin' && (
               <ButtonLink secondary href='/dashboard'>
                 Profil
               </ButtonLink>
             )}
-            {isLogin && path === '/dashboard' && (
+            {isLogin && (path === '/dashboard' || path === '/admin') && (
               <ButtonAction secondary onClick={() => logout(state.user.uid, router, dispatch)}>
                 Logout
               </ButtonAction>
@@ -51,12 +51,12 @@ function Navbar({ children }) {
               Login
             </ButtonLink>
           )}
-          {isLogin && path !== '/dashboard' && (
+          {isLogin && path !== '/dashboard' && path !== '/admin' && (
             <ButtonLink className='sm:hidden' href='/dashboard' secondary>
               Profil
             </ButtonLink>
           )}
-          {isLogin && path === '/dashboard' && (
+          {isLogin && (path === '/dashboard' || path === '/admin') && (
             <ButtonAction
               className='sm:hidden'
               onClick={() => logout(state.user.uid, router, dispatch)}
