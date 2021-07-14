@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
-import { Fragment } from 'react';
+import { useRouter } from 'next/router';
+import { Fragment, useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
 import { ButtonAction, ButtonLink } from '../button';
 
 import { useAuthState } from '../../lib/client/context/hooks';
+import { get, post } from '../../lib/client/fetcher';
 
 function AppointmentModal({
   isOpen,
@@ -19,6 +21,28 @@ function AppointmentModal({
   onDelete,
 }) {
   const { user, loginStatus } = useAuthState();
+  const [registrants, setRegistrants] = useState([]);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const getRegistrants = async () => {
+      const config = { withCredentials: true };
+
+      if (user?.role === 'admin' && aid && loginStatus === 'full') {
+        const res = await get(`/api/appointments/${aid}/registrants`, config);
+        setRegistrants(res.registrants);
+      }
+
+      if (user?.role === 'admin' && aid && loginStatus === 'partial') {
+        await post('/api/refresh', { uid: user.uid }, config).catch(() => router.push('/login'));
+        const res = await get(`/api/appointments/${aid}/registrants`, { withCredentials: true });
+        setRegistrants(res.registrants);
+      }
+    };
+
+    getRegistrants();
+  }, [aid, loginStatus, router, user?.role, user?.uid]);
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -78,6 +102,22 @@ function AppointmentModal({
                     <span className='font-medium text-purple-600'>{slot}</span>
                   </p>
                 </div>
+
+                {user?.role === 'admin' && (
+                  <>
+                    <h4 className='font-medium text-gray-900 mt-3'>Daftar Pasien</h4>
+                    <div className='max-h-24 overflow-y-auto'>
+                      {registrants.map((regist) => (
+                        <div key={regist.uid} className='border-l border-purple-600 pl-1 mt-1'>
+                          <h5 className='text-sm text-gray-800'>
+                            Nama: {regist.firstName} {regist.lastName}
+                          </h5>
+                          <p className='text-sm text-gray-800'>Umur: {regist.age} tahun</p>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
               </Dialog.Description>
             </div>
 

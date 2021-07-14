@@ -5,12 +5,13 @@ import { useCookie } from 'next-cookie';
 
 import { AppointmentCard } from '../components/appointment';
 
-import { get } from '../lib/client/fetcher';
+import { get, post } from '../lib/client/fetcher';
 import { onRegister, onEdit, onDelete } from '../lib/client/helper/register';
 import { getUser } from '../lib/client/helper/auth';
 import { useAuthDispatch } from '../lib/client/context/hooks';
 import { ACTIONS } from '../lib/client/context/AuthContext';
 import AppointmentModal from '../components/appointment/AppointmentModal';
+import { setAccessOptions, setRefreshOptions } from '../lib/server/utils/token';
 
 function Konsultasi({ initialData, user, loginStatus }) {
   const { data } = useSWR('/api/appointments', get, { initialData });
@@ -96,8 +97,23 @@ export async function getServerSideProps(ctx) {
   if (refreshToken) {
     const user = getUser(refreshToken);
 
-    return { props: { initialData, user, loginStatus: 'partial' } };
-  }
+    const res = await post(
+      'http://localhost:3000/api/refresh',
+      { uid: user.uid },
+      {
+        headers: {
+          withCredentials: true,
+          Cookie: `RFSTKN=${refreshToken}`,
+        },
+      }
+    );
 
+    if (res.status === 'ok') {
+      cookie.set('token', res.token.accessToken, setAccessOptions);
+      cookie.set('RFSTKN', res.token.refreshToken, setRefreshOptions);
+
+      return { props: { initialData, user, loginStatus: 'partial' } };
+    }
+  }
   return { props: { initialData, user: null, loginStatus: 'no' } };
 }
