@@ -54,7 +54,7 @@ export async function getServerSideProps(ctx) {
     }
 
     const config = { withCredentials: true };
-    const { appointments } = await get('http://localhost:3000/api/appointments', config);
+    const { appointments } = await get('https://hospid.netlify.app/api/appointments', config);
     const defaultData = appointments.filter(
       (appointment) => appointment.aid === ctx.req.url.slice(12)
     )[0];
@@ -69,7 +69,7 @@ export async function getServerSideProps(ctx) {
     }
 
     const res = await post(
-      'http://localhost:3000/api/refresh',
+      'https://hospid.netlify.app/api/refresh',
       { uid: user.uid },
       {
         headers: {
@@ -84,7 +84,7 @@ export async function getServerSideProps(ctx) {
       cookie.set('RFSTKN', res.token.refreshToken, setRefreshOptions);
 
       const config = { withCredentials: true };
-      const { appointments } = await get('http://localhost:3000/api/appointments', config);
+      const { appointments } = await get('https://hospid.netlify.app/api/appointments', config);
       const defaultData = appointments.filter(
         (appointment) => appointment.aid === ctx.req.query.aid
       );

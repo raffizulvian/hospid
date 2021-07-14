@@ -80,7 +80,7 @@ Konsultasi.layout = 'navbar';
 export default Konsultasi;
 
 export async function getServerSideProps(ctx) {
-  const initialData = await get('http://localhost:3000/api/appointments');
+  const initialData = await get('https://hospid.netlify.app/api/appointments');
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const cookie = useCookie(ctx);
@@ -98,7 +98,7 @@ export async function getServerSideProps(ctx) {
     const user = getUser(refreshToken);
 
     const res = await post(
-      'http://localhost:3000/api/refresh',
+      'https://hospid.netlify.app/api/refresh',
       { uid: user.uid },
       {
         headers: {

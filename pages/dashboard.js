@@ -49,7 +49,7 @@ export async function getServerSideProps(ctx) {
       return { redirect: { destination: '/admin', permanent: false } };
     }
 
-    const initialData = await get(`http://localhost:3000/api/users/${user.uid}/appointments`, {
+    const initialData = await get(`https://hospid.netlify.app/api/users/${user.uid}/appointments`, {
       headers: {
         withCredentials: true,
         Cookie: `token=${token}; RFSTKN=${refreshToken};`,
@@ -66,7 +66,7 @@ export async function getServerSideProps(ctx) {
     }
 
     const res = await post(
-      'http://localhost:3000/api/refresh',
+      'https://hospid.netlify.app/api/refresh',
       { uid: user.uid },
       {
         headers: {
@@ -79,12 +79,15 @@ export async function getServerSideProps(ctx) {
     if (res.status === 'ok') {
       cookie.set('token', res.token.accessToken, setAccessOptions);
       cookie.set('RFSTKN', res.token.refreshToken, setRefreshOptions);
-      const initialData = await get(`http://localhost:3000/api/users/${user.uid}/appointments`, {
-        headers: {
-          withCredentials: true,
-          Cookie: `token=${res.token.accessToken}; RFSTKN=${res.token.refreshToken};`,
-        },
-      });
+      const initialData = await get(
+        `https://hospid.netlify.app/api/users/${user.uid}/appointments`,
+        {
+          headers: {
+            withCredentials: true,
+            Cookie: `token=${res.token.accessToken}; RFSTKN=${res.token.refreshToken};`,
+          },
+        }
+      );
 
       return { props: { user, initialData, loginStatus: 'partial' } };
     }

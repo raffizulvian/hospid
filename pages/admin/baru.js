@@ -63,7 +63,7 @@ export async function getServerSideProps(ctx) {
     }
 
     const res = await post(
-      'http://localhost:3000/api/refresh',
+      'https://hospid.netlify.app/api/refresh',
       { uid: user.uid },
       {
         headers: {
