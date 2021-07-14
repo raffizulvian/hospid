@@ -24,12 +24,12 @@ function Home({ user, loginStatus }) {
               Daftar Konsultasi di Hospid
             </h1>
             <p className='text-lg text-gray-900 max-w-prose'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias tempora tenetur
-              consectetur quam perspiciatis qui deleniti.
+              Hospid adalah sistem informasi kesehatan yang memberikan akses pendaftaran konsultasi
+              dokter antara pasien dan rumah sakit secara langsung.
             </p>
           </div>
-          <ButtonLink href='/' big>
-            Daftar sekarang
+          <ButtonLink href='/signup' big>
+            Gabung sekarang
           </ButtonLink>
         </div>
         <div className='w-72 h-72 md:w-[26rem] md:h-[26rem]'>
