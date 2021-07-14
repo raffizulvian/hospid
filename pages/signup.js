@@ -36,7 +36,7 @@ function Signup() {
           </>
         )}
 
-        {current.matches('review') && (
+        {(current.matches('review') || current.matches('submit') || current.matches('success')) && (
           <>
             <h2 className='text-xl text-gray-900 tracking-wider uppercase mb-1'>
               Konfirmasi (3/3)
