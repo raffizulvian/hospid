@@ -9,6 +9,7 @@ import { useAuthState } from '../../lib/client/context/hooks';
 function AppointmentModal({
   isOpen,
   openHandler,
+  aid,
   doctorName,
   description,
   capacity,
@@ -16,7 +17,6 @@ function AppointmentModal({
   slot,
   onRegister,
   onDelete,
-  onEdit,
 }) {
   const { user, loginStatus } = useAuthState();
 
@@ -95,7 +95,9 @@ function AppointmentModal({
                   <ButtonAction secondary onClick={onDelete}>
                     Hapus
                   </ButtonAction>
-                  <ButtonAction onClick={onEdit}>Sunting</ButtonAction>
+                  <ButtonLink href={`/admin/edit/${aid}`} className='ml-2'>
+                    Sunting
+                  </ButtonLink>
                 </>
               )}
             </div>
@@ -109,6 +111,7 @@ function AppointmentModal({
 AppointmentModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   openHandler: PropTypes.func.isRequired,
+  aid: PropTypes.string.isRequired,
   doctorName: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   capacity: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
@@ -116,7 +119,6 @@ AppointmentModal.propTypes = {
   slot: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   onRegister: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onEdit: PropTypes.func.isRequired,
 };
 
 export default AppointmentModal;

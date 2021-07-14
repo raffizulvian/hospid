@@ -61,6 +61,7 @@ function Konsultasi({ initialData, user, loginStatus }) {
         isOpen={isModalOpen}
         openHandler={() => setIsModalOpen((prev) => !prev)}
         doctorName={selectedAppointment?.doctorName ?? ''}
+        aid={selectedAppointment?.aid ?? ''}
         description={selectedAppointment?.description ?? ''}
         capacity={selectedAppointment?.capacity ?? ''}
         totalRegistered={selectedAppointment?.totalRegistered ?? '-1'}
