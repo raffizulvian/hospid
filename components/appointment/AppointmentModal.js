@@ -39,6 +39,7 @@ function AppointmentModal({
             <Dialog.Overlay className='h-full w-full fixed inset-0 bg-gray-500 bg-opacity-60' />
           </Transition.Child>
         </div>
+
         <span className='inline-block h-full align-middle' aria-hidden='true'>
           &#8203;
         </span>
@@ -55,19 +56,23 @@ function AppointmentModal({
             <Dialog.Title as='h1' className='text-3xl font-medium leading-6 text-gray-900 '>
               Informasi Konsultasi
             </Dialog.Title>
+
             <div className='mt-5'>
               <Dialog.Description as='div' className='mt-2'>
                 <h2 className='text-xl font-semibold text-gray-900'>{doctorName}</h2>
                 <p className='text-gray-900 mt-0.5'>{description}</p>
+
                 <div className='text-sm text-gray-800 space-y-0.5 mt-3'>
                   <p>
                     Kapasitas maximum:{' '}
                     <span className='font-medium text-purple-600'>{capacity}</span>
                   </p>
+
                   <p>
                     Jumlah pasien terdaftar:{' '}
                     <span className='font-medium text-purple-600'>{totalRegistered}</span>
                   </p>
+
                   <p>
                     Sisa slot yang tersedia:{' '}
                     <span className='font-medium text-purple-600'>{slot}</span>
