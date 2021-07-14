@@ -1,3 +1,32 @@
 {
-  "extends": ["next", "next/core-web-vitals"]
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "jest/globals": true
+  },
+  "plugins": ["jest"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:jest/recommended",
+    "plugin:jest/style",
+    "airbnb-base",
+    "next",
+    "next/core-web-vitals"
+  ],
+  "rules": {
+    "operator-linebreak": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "object-curly-newline": ["error", { "multiline": true }],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never"
+      }
+    ]
+  }
 }
